@@ -1,0 +1,345 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.event{
+    margin: 20px 0 20px -390px;
+    text-shadow: none;
+    background: rgb(211, 197, 197);
+    font-size: 12px;
+    box-shadow: 1px 1px 3px rgb(204, 176, 176);
+    animation: slide ease-in 0.45s forwards;
+}
+.eventS{
+    margin: 20px 0 20px -390px;
+    text-shadow: none;
+    text-transform: uppercase;
+    background: rgb(189, 199, 178);
+    font-size: 12px;
+    box-shadow: 1px 1px 3px rgb(204, 176, 176);
+    margin: -120px 0 20px 0px;
+    animation: slide2 ease 0.5s forwards;
+}
+.event input, .eventS input{
+    width: 25px;
+    border-radius: 2px;
+    box-shadow: 0.5px 0.5px 1px blue;
+}
+.event > h4{
+    padding: 10px;
+    text-transform: uppercase
+}
+#event, #eventS {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#event tr:nth-child(even){background-color: #f2f2f2;}
+
+#event tr:hover {background-color: #ddd;}
+
+#event th, .eventS th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: rgba(37, 22, 3, 0.9);
+    color: white;
+}
+#btnSave2{
+    padding: 10px;
+    background:rgb(51, 4, 4); 
+    border: none;
+    color: rgb(218, 174, 174);
+    cursor: pointer;
+}
+#meridian{
+    background: rgb(34, 24, 2);
+     padding: 5px; 
+     border: none; 
+     color: white;
+}
+#showTime{
+    padding: 10px;
+    border-radius: 0 10px 10px 0;
+    background: rgba(0, 0, 12, 0.144);
+    text-shadow: none;
+    color: rgb(194, 188, 135);
+}
+#btnSave2:active{
+    background:rgb(159, 160, 98);
+}
+main{
+    display: flex;
+    justify-content: center;
+    margin-top: -600px;
+    background: black; 
+    animation: motionss ease-in 1s forwards;
+}
+
+main >  .section{
+    background: rgba(22, 1, 1, 0.986);
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid brown;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px brown;
+    
+}
+main >  section > div {
+    text-align:center;
+    font-size: large;
+    color: rgb(134, 28, 28);
+    border-bottom: 0.1rem solid rgb(214, 108, 108);
+    text-shadow: 0.5px 0.5px 3px white;
+    
+}
+main >  section > div > h1{
+    text-shadow: 0.5px 0.5px 5px white;
+    animation: motionsss ease-out 15s infinite;
+}
+.abcc{
+    display: flex;
+    border: none;
+    margin-top: 10px;
+    color: rgb(5, 5, 48);
+}
+  .abc{
+    display: flex;
+    justify-content: center;
+    border-radius: 0 0 10px 10px;
+    color: white;
+    padding: 5px;
+    text-shadow: none;
+    animation: motions ease 1s;
+    animation-iteration-count: infinite;
+}
+.a, .b, .c{
+    width: 100%;
+    padding: 5px;
+}
+.aa, .bb, .cc{
+    width: 100%;
+    background: rgba(207, 160, 126, 0.637);
+    border: none;
+    padding: 5px;
+    border-bottom: 0;
+}
+ span{
+    margin-top: 0.5rem;
+}
+.setAlarm{
+    padding: 10px;
+    margin: 20px 0 20px 0;
+    color: rgba(115, 201, 172, 0.623);
+    text-shadow: none;
+    background: rgba(37, 22, 3, 0.5);
+}
+.setBox{
+    display: flex;
+    justify-content: center;
+    text-shadow: none;
+    background: rgba(231, 231, 231, 0.363);
+}
+input{
+    border-radius: 5px;
+    width: 3rem;
+    margin: 3px;
+    padding: 6px;
+    background: none;
+    text-align: center;
+    opacity: 0.5;
+    color: rgb(46, 6, 18);
+}
+input:focus{
+   box-shadow: 1px 1px 10px blue;
+   border-radius: 20px;
+   opacity: 1;
+   border-radius: 0;
+}
+.button{
+    border-radius: 30px;
+    border: none;
+    margin-top: 10px;
+    background: rgb(19, 0, 0);
+
+}
+.button > button, #return, #eventCheck{
+    width: 100px;
+    color: green;
+    background: rgb(43, 68, 9);
+    cursor: pointer;
+    margin: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: -0.3px 0.3px 3px white;
+   
+}
+.button > button:active{
+    background: rgb(86, 151, 86);
+    color: rgb(37, 3, 3);
+}
+#return:active{
+    background: rgb(86, 151, 86);
+    color:white;
+}
+#message{
+    padding: 10px 10px 2px 10px;
+    text-shadow: none;
+    animation: motion ease-in-out 0.6s;
+    animation-iteration-count: infinite;
+}
+#message2{
+    font-size: 11px;
+    padding: 5px;
+    text-shadow: none;
+    color: rgb(126, 77, 77);
+
+}
+#uAns{
+    width: 10rem;
+}
+.msg{
+    border: none;
+}
+
+footer{
+    background: rgba(37, 22, 3, 0.5);
+    border-radius: 15px;
+    margin-top: 9px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+footer h5{
+    font-family: Helvetica, sans-serif;
+}
+.shake{
+    animation: shake ease 0.1s 5;
+}
+.shake2{
+    text-shadow: none;
+    animation: shake ease 0.5s infinite;
+}
+.shake3{
+    text-shadow: none;
+    animation: shake3 ease 5s infinite;
+}
+.loader {
+    border: 2px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 2px solid #5cd685;
+    width: 12px;
+    height: 12px;
+    animation: spin 2s linear infinite;
+  }
+  
+@media screen and (max-width: 768px){
+    
+    main >  .section{
+        margin: 10px;
+        width: 100%;
+        padding: 20px;
+    }
+    input{
+        width: 4rem;
+        height: 1rem;
+    }
+    #uAns{
+        width: 70%;
+        height: 1.5rem; 
+    }
+    .button > button{
+        width: 8.5rem;
+        height: 3.2rem;
+        padding: 0px;
+    }
+    footer{
+       padding: 15px;
+    
+    }
+   
+}
+
+@keyframes motion{
+    0%{transform: translateX(20px); opacity: 0.5;
+    text-shadow: 0.1px 0.1px 0.5px rgb(163, 162, 147);
+    color: aliceblue;}
+    50%{transform: translateX(0px);
+        color:rgb(113, 168, 168);}
+    
+    100%{transform: translateX(20px);
+        color: aliceblue;
+        text-shadow: 0.1px 0.1px 0.5px rgb(32, 9, 9);}
+    }
+
+@keyframes motions{
+    0%{transform: translateX(0px); opacity: 0;}
+    
+}
+@keyframes motionss{
+    50%{transform: translateY(10px); opacity: 0; }
+    100%{transform: translateY(600px); opacity: 1; }
+
+}
+@keyframes motionsss{
+    0%{transform: translateY(0px); 
+        text-shadow: 0.5px 0.5px 3px rgb(150, 196, 165);
+        opacity: 1;}
+    50%{transform: translateY(0px); 
+    text-shadow: 0.5px 0.5px 4px rgb(175, 194, 181);
+    opacity: 1;}
+
+}
+@keyframes shake{
+    0%{transform: translateX(-5px); 
+        text-shadow: 0.5px 0.5px 3px rgb(150, 196, 165);
+        opacity: 0.6;}
+    50%{transform: translateX(5px); 
+    text-shadow: 0.5px 0.5px 4px rgb(175, 194, 181);
+    opacity: 0.87;}
+    100%{transform: translateX(5px); 
+        text-shadow: 0.5px 0.5px 4px rgb(175, 194, 181);
+        opacity: 1;}
+
+}
+@keyframes shake3{
+    0%{transform: translateX(0px);
+        font-size: 10.5px; 
+        color: rgb(224, 201, 201);
+        opacity: 0.4;}
+    50%{transform: translateX(0px);
+        font-size: 11px;
+        color: rgb(126, 77, 77);
+        opacity: 0.8;}
+    100%{transform: translateX(0px);
+        font-size: 10.5px; 
+        opacity: 1;
+        color: rgb(224, 201, 201);
+    }
+
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  
+}
+@keyframes slide {
+    0% { transform: translateX(0px); opacity: 0; }
+    20% { transform: translateX(100px); opacity: 0; }
+    30% { transform: translateX(200px); opacity: 0; }
+    50% { transform: translateX(300px); opacity: 0; }
+    100% { transform: translateX(390px); opacity: 1;}
+  
+}
+@keyframes slide2 {
+    0% { transform: translateY(60px); opacity: 0; }
+    100% { transform: translateY(0px); opacity: 1;
+        margin: 20px 0 20px 0px;}
+  
+}
+
