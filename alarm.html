@@ -1,0 +1,631 @@
+<!doctype html>
+<html>
+    <head>
+        <style></style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Alarm System</title>
+        <link rel="stylesheet" href="alarm.css" type="text/css"/>
+        
+        
+    </head>
+
+    <body>
+        
+        <main class="main" id="main">
+            <section class="section">
+                <div><h1>ALARM SYSTEM</h1></div>
+                <div  class="abcc">
+                        <div class="aa"><h5>Hours</h5></div>
+                        <div class="bb"><h5>Minutes</h5></div>
+                        <div class="cc"><h5>Seconds</h5></div>
+                    </div>
+                <div  class="abc">
+                    <h4></h4><div class="a" id='Hour'></div><span>:</span>
+                    <div class="b" id ='Minute'></div><span>:</span>
+                    <div class="c" id="Second"></div>
+                </div>
+                <div>
+                <h6><div class="showTime" id="showTime"> </div></h6>
+                <div class="setAlarm" id="sA">SET YOUR ALARM HERE</div>
+                </div>
+                 <div  class="setBox" id="setBox">
+                    <div class="aaa"><input type="text" id="iH" maxlength="2"/></div><span>:</span>
+                    <div class="bbb"><input type="text" id='iM' maxlength="2"/></div>
+                  
+                </div>
+                
+                <div class="msg" id="msg">
+                    <em><h6><div id="message"></div></h6></em>
+                    <div style="display:flex; justify-content: center;">
+                        <div id="spin"></div>
+                        <em><div id="message2"></div></em>
+                    </div>
+                    <div><input type="text" id="uAns" style=" color: white" placeholder="type your answer here" /></div>
+                    <button  style="cursor: pointer; border-radius: 1.8px; border: none; padding: 5px; margin-top: 10px; width: 45px; height:30px;" id="dis1" onclick='pauseAlarm2();' ><h3>Ok</h3></button>
+
+                </div>
+                
+                <div class="event" id="event">
+                    <h4>Event's List</h4>
+                    <table width="100%">
+                        <tr>
+                           <th>Event</th>
+                           <th style="text-align: left;">&nbsp; [Hrs:Mins]&nbsp;&nbsp;&nbsp; Time </th>
+                           <th>Save</th>
+
+                        </tr>
+                        
+                        <tr>
+                            <td><input id="eve" type="text" /> </td>
+                            <td><input type="number" id="hr" />:<input type="number" id="min"/>
+                            <select  id="meridian">
+                                <option>AM</option>
+                                <option>PM</option>
+                            </select>
+                            </td>
+                            <td><button id="btnSave2" onclick="storeAlarm([hr, min])">Save</button></td>
+                        </tr> 
+                        <tr>
+                            <td><input id="eve" type="text" /> </td>
+                            <td><input type="number" id="hr" />:<input type="number" id="min"/>
+                            <select  id="meridian">
+                                <option>AM</option>
+                                <option>PM</option>
+                            </select>
+                            </td>
+                            <td><button id="btnSave2" onclick="storeAlarm([hr, min])">Save</button></td>
+                        </tr>  
+                        <tr>
+                            <td><input id="eve" type="text" /> </td>
+                            <td><input type="number" id="hr" />:<input type="number" id="min"/>
+                            <select  id="meridian">
+                                <option>AM</option>
+                                <option>PM</option>
+                            </select>
+                            </td>
+                            <td><button id="btnSave2" onclick="storeAlarm([hr, min])">Save</button></td>
+                        </tr> 
+                        <tr>
+                            <td><input id="eve" type="text" /> </td>
+                            <td><input type="number" id="hr" />:<input type="number" id="min"/>
+                            <select  id="meridian">
+                                <option>AM</option>
+                                <option>PM</option>
+                            </select>
+                            </td>
+                            <td><button id="btnSave2" onclick="storeAlarm([hr, min])">Save</button></td>
+                        </tr> 
+    
+                    </table>
+                   
+                </div>
+                <div id="eventS" class="eventS">
+                        <table width="100%" >
+                            <h4>Event's Status</h4>
+                            <tr>
+                                <th>Event</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                                    
+                            <tr>
+                                <td></td>
+                                <td>
+                                </td>
+                                <td><button ></button></td>
+                            </tr>         
+                        </table>
+                        </div>
+                <div class="button" id="button">
+                        <button style="color:rgb(235, 235, 228); width: 100px;" id="dis3" onclick='controlAlarm();'>SET</button>
+                        <button style="background: red; width: 100px;" id="dis2" onclick='pauseAlarm();'>STOP</button><br>
+                        <button style="color:rgb(235, 235, 228); background: #420714; width: 100px;  transition-duration: 5s;" id="snooze" onclick='snoozeAlarm();'>SNOOZE</button>
+                        <button style=" background: #0b0742; color:rgb(235, 235, 228); width: 100px;" id="save" onclick='saveAlarm();'>EVENTS</button>
+
+
+                </div>
+                <div style="display:flex; justify-content: center; border: none; margin: 10px;">
+                
+                <button id="eventCheck" onclick="eventInvoke();">Chk Events</button>
+                <button id="return" >Return</button>
+                </div>
+                <footer><h5>&copy; MayakiProject2020</h5></footer>
+            </section>
+
+        </main>
+        
+
+
+    </body>
+    <script type="text/javascript">
+        const myTime = new Date();
+        let myHour = myTime.getHours();
+        let myMinute = myTime.getMinutes();
+        let mySeconds = myTime.getSeconds();
+        let showHour = document.getElementById('Hour');
+        let showMinute = document.getElementById('Minute');
+        let showSecond = document.getElementById('Second');
+        
+
+        let inputHour = document.getElementById('iH');
+        let inputMinute = document.getElementById('iM');
+        let message = document.getElementById('message');
+        let iH = inputHour.value;
+        let iM = inputMinute.value;
+        
+         //writing the ringing tone code
+        let ringAlarm = new Audio();
+        ringAlarm.src = "horse.ogg";
+        //ends here
+
+        //getting each its own
+        let msgOff=  document.getElementById('msg');
+        let btnOff=  document.getElementById('button');
+        let eventOff=  document.getElementById('event');
+        let setBoxOff = document.getElementById('setBox');
+        let returnOff = document.getElementById('return');
+        let eventStatus = document.getElementById("eventS");
+        let eventChk = document.getElementById("eventCheck");
+        eventChk.style.display = "none";
+        eventStatus.style.display ="none";
+        returnOff.style.display = "none";
+        eventOff.style.display="none";
+
+        //ends here
+
+        //disabling the ok and stop buttons
+        btnOk = document.getElementById('dis1');
+        btnOk.disabled = true;
+        btnStop = document.getElementById('dis2');
+        btnStop.disabled = true;
+        btnSnooze = document.getElementById('snooze');
+        btnSnooze.disabled = true;
+        //ends here
+
+       showDay(); //displays the months and days in words
+    
+   
+    
+    //few calculations
+   
+    //ends here
+        
+    //getting the global timestamp here and miscellaneous
+    let myTiming = () =>{
+        const myTime = new Date();
+        let myHour = myTime.getHours();
+        let myMinute = myTime.getMinutes();
+        let mySeconds = myTime.getSeconds();
+
+        let showHour = document.getElementById('Hour');
+        let showMinute = document.getElementById('Minute');
+        let showSecond = document.getElementById('Second');
+
+        let  tMeridian= "<h6 style= float:right;>"+"AM"+"</h6>";; //declaring time meridian
+        //manipulating the 24-hour format to 12-hour
+        if(myHour>=12){
+            tMeridian= "<h6 style= float:right;>"+"PM"+"</h6>";
+            
+        }
+        if(myHour>12){
+            myHour=myHour-12;
+            showHour.innerHTML = myHour;
+            showSecond.innerHTML = mySeconds+" "+" "+" "+tMeridian;
+            showMinute.innerHTML = myMinute;
+        }
+        if(myHour<12){
+            showHour.innerHTML = myHour;
+            showSecond.innerHTML = mySeconds+" "+" "+" "+tMeridian;
+            showMinute.innerHTML = myMinute;
+        }
+        
+        //ends here
+        
+       //comparing the time for beeping the alarm
+       calS();
+       
+        
+         //traking the both alarm types
+         alarm=false;
+        localTrack=false;
+        //ends here 
+        if((parseInt(inputHour.value)==parseInt(showHour.innerHTML))
+            &&(parseInt(inputMinute.value)==parseInt(showMinute.innerHTML))){
+                alarm=true;
+               message.innerHTML = "WAKE UP!! "+"it's "+
+               inputHour.value+" : "+inputMinute.value+" "+tMeridian;
+               ringAlarm.play();
+               ringAlarm.loop=true;
+                btnSnooze.disabled=false;
+                btnStop.disabled=false;
+                btnSnooze.style.opacity="1";
+                save.disabled=true;
+        }
+       
+        else if((localStorage.getItem("lH")==myHour)&&(localStorage.getItem("lM")==myMinute)
+                &&(localStorage.getItem("lD")==myTime.getDay())){
+            document.getElementById("dis3").disabled = true;
+            save.disabled=true;
+            localTrack = true;
+            message.innerHTML = "WAKE UP from local stored time!!<br>it's "+" "+localStorage.getItem("lH")+": "+localStorage.getItem("lM");
+            message2.innerHTML = "alarm fulfilled!";
+            spin.classList.remove("loader");
+            ringAlarm.play();
+            ringAlarm.loop = true;
+            btnSnooze.disabled = false;
+            btnStop.disabled=false;
+            btnSnooze.style.opacity = "1";
+            
+        }
+        else if(((localStorage.getItem("lH")==undefined)&&(localStorage.getItem("lM")==undefined))||
+                ((localStorage.getItem("lH")==null)&&(localStorage.getItem("lM")==null))
+                ||((localStorage.getItem("lH")=="")&&(localStorage.getItem("lM")==""))||
+                (isNaN(localStorage.getItem("lH"))&&isNaN(localStorage.getItem("lM")))){
+            message2.classList.add("shake3");
+            document.getElementById('message2').innerHTML = 
+            "You have no pending alarms";
+             ringAlarm.pause();
+             localStorage.removeItem("lH");
+             localStorage.removeItem("lM");
+
+            spin.classList.add("loader");
+            document.getElementById("dis3").disabled = false;
+            save.disabled=false;
+            localTrack=false;
+            
+        }
+        else if((localStorage.getItem("lH")!="")||(localStorage.getItem("lH")!="")){
+            message2.classList.add("shake3");
+            message.innerHTML="You have set a local time";
+            message2.innerHTML = 
+            "You have a pending alarm @ "+
+            localStorage.getItem("lH")+": "+localStorage.getItem("lM");
+             ringAlarm.pause();
+             localTrack=true;
+             btnStop.disabled = false;
+             spin.classList.add("loader");
+            
+        }
+        
+        else{
+            save.disabled=false;;
+            document.getElementById("dis3").disabled = false;
+            btn.btnStop.disabled=false;
+            
+        }
+        
+        
+    }
+    
+    let controlTime = () =>{
+        setInterval(myTiming, 1000);
+        
+    }  
+        window.onload = controlTime;
+
+    
+        function calS(){
+        let subZero = 60 - parseInt(showMinute.innerHTML);
+        let subH = parseInt(showHour.innerHTML) - parseInt(inputHour.value);
+        let sub = parseInt(showMinute.innerHTML) - parseInt(inputMinute.value);
+        if(parseInt(inputMinute.value)!=""&&parseInt(inputHour.value!="")){
+                    message.innerHTML="You have set your alarm";
+                }
+        else if((inputMinute.value>60||inputHour.value>=25)||
+                ((isNaN(inputHour.value)||isNaN(inputMinute.value)))){
+                ringAlarm.pause();
+                message.innerHTML = "invalid time!";
+                document.getElementById("dis3").disabled =false;
+                return;
+                }
+                
+                else if(parseInt(inputMinute.value)==0&&((parseInt(inputHour.value)-parseInt(showHour.innerHTML)==1))){
+                    message.innerHTML = "alarm sets in "+Math.abs(subZero)+" minute's time<br>click SET";
+                    ringAlarm.pause();
+                    btnSnooze.style.opacity = "0.5";
+                    document.getElementById("dis3").disabled =false;
+                }
+                else if((parseInt(inputMinute.value)==0||parseInt(inputMinute.value)>0)&&((parseInt(inputHour.value)-parseInt(showHour.innerHTML)>=1))){
+                    let subHminus = Math.abs(subH);
+                    subHminus--;
+                    message.innerHTML = "alarm sets in "+subHminus+" hour(s) "+Math.abs(subZero)+" minute's time<br>click SET";
+                    ringAlarm.pause();
+                    btnSnooze.style.opacity = "0.5";
+                    document.getElementById("dis3").disabled =false;
+
+                }
+                else if((parseInt(showMinute.innerHTML)==parseInt(inputMinute.value))==0&&(parseInt(inputHour.innerHTML)==parseInt(inputMinute.value))){
+                    message.innerHTML = "alarm sets in "+Math.abs(subZero)+" minute's time<br>click SET";
+                    ringAlarm.pause();
+                    btnSnooze.style.opacity = "0.5";
+                    document.getElementById("dis3").disabled =false;
+
+                }
+                else if(((parseInt(inputMinute.value)<parseInt(showMinute.innerHTML))&&(parseInt(inputHour.value)<=parseInt(showHour.innerHTML)))
+                    &&((parseInt(inputMinute.value)<parseInt(showMinute.innerHTML))||(parseInt(inputHour.value)<=parseInt(showHour.innerHTML)))){
+                    message.innerHTML = "alarm sets again within the next 24hrs"+"<br>click SET";
+                    ringAlarm.pause();
+                    btnSnooze.style.disabled = false;
+                    btnSnooze.style.opacity = "0.5";
+                    document.getElementById("dis3").disabled =false;
+                }
+                else if((parseInt(inputMinute.value)>parseInt(showMinute.innerHTML))&&(parseInt(inputHour.value)>parseInt(showHour.innerHTML))){
+                message.innerHTML = "alarm sets in "+Math.abs(subH)+" hour(s) "+Math.abs(sub)+" minute's time<br>click SET";
+                ringAlarm.pause();
+                btnSnooze.style.opacity = "0.5";
+                document.getElementById("dis3").disabled =false;
+
+                }    
+                else if((parseInt(inputMinute.value)>parseInt(showMinute.innerHTML)&&(inputHour.value==showHour.innerHTML))){
+                message.innerHTML = "alarm sets in "+Math.abs(sub)+" minute's time<br>click SET";
+                ringAlarm.pause();
+                btnSnooze.style.opacity = "0.5";
+                document.getElementById("dis3").disabled =false;
+
+                }
+               
+                else{
+                    document.getElementById('message').innerHTML = "Set an alarm? <br> Click SET";
+                    document.getElementById("dis3").disabled =false;
+                    btnStop.disabled = true;
+                    btnSnooze.disabled = true;
+                    btnSnooze.style.opacity = "0.3";
+            }
+    }
+   //formatting days and months
+    function showDay(){
+        let myMonth = myTime.getMonth();
+        if (myMonth == 0){myMonth = "January"};
+        if (myMonth == 1){myMonth  = "February"};
+        if (myMonth == 2){myMonth  = "March"};
+        if (myMonth == 3){myMonth  = "April"};
+        if (myMonth ==4){myMonth= "May"};
+        if (myMonth == 5){myMonth  = "June"};
+        if (myMonth == 6){myMonth  = "July"};
+        if (myMonth == 7){myMonth  = "August"};
+        if (myMonth == 8){myMonth  = "September"};
+        if (myMonth == 9){myMonth  = "October"};
+        if (myMonth == 10){myMonth  = "November"};
+        if (myMonth == 11){myMonth  = "December"};
+        
+        let showTime = document.getElementById('showTime');
+        let myDay = myTime.getDay();
+      switch(myDay){
+          case 0: 
+          myDay = "Sunday";
+          showTime.innerHTML= myDay+", "+myMonth+" "+
+          myTime.getFullYear()+" .";
+          myTime.getFullYear();
+          break;
+          case 1: 
+          myDay = "Monday";
+          showTime.innerHTML= myDay+", "+myMonth+" "+
+          myTime.getFullYear()+" .";
+            break;
+          case 2: 
+          myDay ="Tuesday";
+          showTime.innerHTML= myDay+", "+myMonth+" "+
+          myTime.getFullYear()+" .";
+          break;
+          case 3: 
+          myDay = "Wednesday";
+          showTime.innerHTML= myDay+", "+myMonth+" "+
+          myTime.getFullYear()+" .";
+            break;
+          case 4: 
+          myDay = "Thursday";
+          showTime.innerHTML= myDay+", "+myMonth+" "+
+          myTime.getFullYear()+" .";
+            break;
+          case 5: 
+          myDay = "Friday";
+          showTime.innerHTML= myDay+", "+myMonth+" "+
+          myTime.getFullYear()+" .";
+            break;
+          case 6: 
+          myDay = "Saturday";
+          showTime.innerHTML= myDay+", "+myMonth+" "+
+          myTime.getFullYear()+" .";
+            break;
+    
+        }
+    }
+    //ends here
+        
+    //calling the function mytime every one second
+   
+    //code controlling the SET button
+    let controlAlarm = () =>{
+        btnStop.disabled = false;
+        message.innerHTML = "You have set your alarm";
+        if((inputHour.value=="")||(inputMinute.value=="")||
+            isNaN(inputHour.value)||isNaN(inputMinute.value)){
+            document.getElementById('dis2').disabled = true;
+            document.getElementById('message').innerHTML = "Input a set time";
+            document.getElementById('dis3').classList.add("shake");
+            return;
+        }
+        
+       else if(alarm){
+               btnSnooze.disabled=false;
+               ringAlarm.play();
+               ringAlarm.loop=true;
+        }
+        
+        else{
+            ringAlarm.pause();
+        }
+    }
+    
+    //end here
+
+    //Pre-stop button
+    let pauseAlarm = () =>{
+        let askQuestion = "Why do you want to stop me?";
+        document.getElementById('message').innerHTML = askQuestion;
+        btnOk.disabled = false;
+        
+    }
+    //ends here
+    
+    //Code for the input box
+    let pauseAlarm2 = () =>{
+        let cAnswer = "tired";
+        let uAnswer = document.getElementById('uAns').value;
+        
+        if(uAnswer==""){
+            document.getElementById('message').innerHTML = "Enter a reason";
+            alarm=false;
+            return;
+        }
+        if((localTrack)&&(cAnswer==uAnswer)){
+           setTimeout( function(){
+                ringAlarm.pause();
+                localStorage.removeItem("lH");
+                localStorage.removeItem("lM");
+                message.innerHTML = "local stored alarm cancelled";
+                message2.innerHTML = "local stored alarm terminated!";
+                btnSnooze.opacity= 0.3;
+                btnSnooze.disabled = true;},
+                100);
+                document.getElementById("dis3").disabled=false;
+                btnSnooze.disabled=false;
+        }
+        if((alarm)&&(cAnswer==uAnswer)){
+            ringAlarm.pause();
+            document.getElementById('message').innerHTML = "Alarm stopped! Set Alarm again";
+            document.getElementById('uAns').value = "";
+            save.disabled=false;
+            btnSnooze.disabled=false;
+            inputHour.value=inputMinute.value="";
+        }
+        
+        if(cAnswer!=uAnswer){
+            document.getElementById('message').innerHTML = "Reason not genuine!";
+            ringAlarm.play();
+        }
+        
+
+    }
+
+    //ends here
+
+//snoozing alarm function
+let snoozeAlarm = () =>{
+    if(alarm&&inputMinute.value<=50){
+        inputMinute.value = parseInt(inputMinute.value)+10;
+        ringAlarm.pause();
+        message.innerHTML = "Alarm snoozed... 10minutes";
+        btnStop.disabled=false;
+        document.getElementById("dis3").disabled=false;
+    }
+    else{
+        if(alarm&&inputMinute.value>50){
+        inputHour.value = parseInt(inputHour.value)+1;
+        let M = parseInt(inputMinute.value) + 10;
+        inputMinute.value = parseInt(M) - 60;
+        ringAlarm.pause();
+        message.innerHTML = "Alarm snoozed... 10minutes";
+        btnStop.disabled=false;
+        document.getElementById("dis3").disabled=false;
+        }
+        else{
+            alarm=false;
+            btnStop.disabled=true;
+            document.getElementById("dis3").disabled=true;
+        }
+        
+    }
+     if(localTrack&&inputMinute.value<=50){
+        localStorage.setItem("lM", parseInt(localStorage.getItem("lM"))+10);
+        ringAlarm.pause();
+        message.innerHTML = "Alarm snoozed... 10minutes";
+        message2.innerHTML = "Alarm snoozed... 10minutes";
+        btnStop.disabled=false;
+        document.getElementById("dis3").disabled=false;
+    } 
+    else{
+        if(localTrack&&inputMinute.value>50){
+        localStorage.setItem("lH", parseInt(localStorage.getItem("lH"))+1);
+        let M2 = parseInt(localStorage.getItem("lM")) + 10;
+        localStorage.setItem("lM", parseInt(M2)-60);
+        ringAlarm.pause();
+        message.innerHTML = "Alarm snoozed";
+        btnStop.disabled=false;
+        document.getElementById("dis3").disabled=false;
+        }
+        else{
+            ringAlarm.pause();
+            
+        }
+        
+    } 
+   
+}
+//ends here
+
+let day = myTime.getDay();
+let message2 = document.getElementById('message2');
+let spin = document.getElementById("spin");
+let sa = document.getElementById('sA');
+
+let saveAlarm = () =>{
+    
+    btnOff.style.display = "none";
+    msgOff.style.display= "none";
+    setBoxOff.style.display = "none";
+    eventOff.style.display = "block";
+    returnOff.style.display = "block";
+    eventChk.style.display = "block";
+    sa.innerText = "INCLUDE EVENTS HERE";
+   
+}
+returnOff.addEventListener("click", returnBtn);
+ function returnBtn(){
+    btnOff.style.display = "block";
+    msgOff.style.display= "block";
+    setBoxOff.style.display = "flex";
+    eventOff.style.display = "none";
+    returnOff.style.display = "none";
+    eventChk.style.display = "none";
+    eventStatus.style.display = "none";
+    sa.innerText = "SET YOUR ALARM  HERE";
+
+
+}
+
+let hr = document.getElementById('hr');
+let min = document.getElementById('min');
+function storeAlarm(){
+    
+    let alarmArray = [];
+    let i;
+    for(; i<alarmId.length; i++){
+        alarmArray.push(alarmId[i]);
+    }
+    let lS= localStorage.setItem("alarm", JSON.stringify(alarmArray));
+    let gg= localStorage.getItem("alarm");
+    console.log(gg)
+    console.log(gg);
+}
+
+let toggle=true;
+var eventInvoke = function(){
+    if(toggle){
+    eventStatus.style.display = "block";
+    eventChk.innerText= "Close";
+    eventChk.style.color= "lightpink";
+    toggle=false;
+    }
+    else{
+        eventStatus.style.display = "none";
+        eventChk.innerText= "See Events";
+        eventChk.style.color= "white";
+        toggle=true;
+    }
+}
+  
+</script>
+
+</html>
